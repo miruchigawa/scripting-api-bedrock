@@ -1,0 +1,32 @@
+{
+    "format_version": 2,
+    "header": {
+        "name": "Lunachi",
+        "description": "Learning scripting api bedrock",
+        "uuid": "9da45249-100a-471f-94a5-addad8707198",
+        "min_engine_version": [1, 20, 0],
+        "version": [1, 0, 0]
+    },
+    "modules": [
+        {
+            "description": "Behavior Pack Module",
+            "type": "data",
+            "uuid": "da64157f-724a-41b2-861f-b3ded0221368",
+            "version": [1, 0, 0]
+        },
+        {
+            "description": "Script module",
+            "type": "script",
+            "language": "javascript",
+            "entry": "scripts/index.js",
+            "uuid": "d7b08053-85ea-4cfa-850f-6cfb17d4c5b5",
+            "version": [1, 0, 0]
+        }
+    ],
+    "dependencies": [
+        {
+            "module_name": "@minecraft/server",
+            "version": "1.3.0-beta"
+        }
+    ]
+}
