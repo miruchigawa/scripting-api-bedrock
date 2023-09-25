@@ -1,13 +1,33 @@
 import { world } from "@minecraft/server";
+import { ActionFormData } from "@minecraft/server-ui";
 
-world.afterEvents.chatSend.subscribe((data) => {
-    const player = data.sender;
+console.warn("Started scripting...");
+
+
+const { afterEvents } = world;
+
+
+// Detect player has hook item
+afterEvents.itemStartUseOn.subscribe((data) => {
+    const { block, source } = data;
     
-    switch(data.message) {
-        case "hello":
-            player.sendMessage("Hello!");
-            break;
-        default:
-            return player.sendMessage("I don't understand wht are you saying?");
+    console.warn(block.typeId);
+    if (block.typeId === "minecraft:bed"){
+        showMenu(source);
     }
+    //console.warn(source);
 });
+
+function showMenu(player){
+    const form = new ActionFormData();
+    form.title("Sleep menu.");
+    form.body("Select bellow rest until");
+    form.button("Normal");
+    form.button("Afternoon");
+    form.button("Night");
+    
+    form.show(player).then((response) => {
+        if (response.canceled) return console.warn("User has canceled.")
+        console.warn(`User selected ${response.selection}`)
+    })
+}
